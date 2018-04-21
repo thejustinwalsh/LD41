@@ -33,6 +33,9 @@ class DebugInfo extends h2d.Sprite
 
         // Draw Calls
         drawCallText.text = "Draw Calls: " + engine.drawCalls;
+
+        // Always on top
+        parent.addChildAt(this, parent.numChildren + 1);
         
         haxe.Timer.delay(update, sampleRate);
     }
