@@ -1,0 +1,4 @@
+# Ignore compiled hashlink and js
+*.hl
+*.js
+*.js.map

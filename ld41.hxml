@@ -1,0 +1,6 @@
+-debug 
+-lib heaps hlsdl
+-cp src
+-hl ld41.hl
+-main LD41
+-D windowSize=800x608
