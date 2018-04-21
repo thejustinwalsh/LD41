@@ -16,7 +16,7 @@ class TileMap extends Sprite
         var tileSet:Tile = tileSetImage.toTile();
 
         // Create a new TileGroup to hold our map tiles
-        content = new TileGroup(tileSet, this);
+        content = new TileGroup(tileSet);
 
         // Get the map data and generate the tile set lookup array
         var mapData = map.toMap();
