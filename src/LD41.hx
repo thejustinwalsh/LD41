@@ -5,7 +5,11 @@ class LD41 extends hxd.App
     
     override function init()
     {
+        // Render our level
         background = new TileMap(hxd.Res.maps.level1, hxd.Res.tiles.darkSet, 32, 0, s2d);
+
+        // Play the music
+        hxd.Res.music.LD41Vibe.play();
 
         // Debug
         var debugInfo = new DebugInfo(16, s2d);
