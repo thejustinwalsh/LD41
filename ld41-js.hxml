@@ -1,6 +1,0 @@
--debug 
--lib heaps
--cp src
--js ld41.js
--main LD41
--D windowSize=800x608

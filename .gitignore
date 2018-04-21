@@ -1,4 +1,3 @@
-# Ignore compiled hashlink and js
+# Ignore compiled hashlink and js source maps
 *.hl
-*.js
 *.js.map
