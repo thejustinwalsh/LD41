@@ -1,24 +1,59 @@
 class LD41 extends hxd.App
 {
-    var background:TileMap;
-    var foreground:TileMap;
-    
+    var scenes:Array<Scene> = [];
+
     override function init()
     {
-        // Render our level
-        background = new TileMap(hxd.Res.maps.level1, hxd.Res.tiles.darkSet, 32, 0, s2d);
-
-        // Play the music
-        hxd.Res.music.LD41Vibe.play();
-
         // Debug
         var debugInfo = new DebugInfo(16, s2d);
         debugInfo.x = hxd.Stage.getInstance().width - 80;
+
+        // Init Scene Stack
+        scenes = [new scene.GameOver(), new scene.Game(), new scene.Title()];
+
+        var scene = scenes[scenes.length - 1];
+        s2d.addChild(scene);
+        scene.init();
+    }
+
+    function reset()
+    {
+        while (scenes.length > 0) {
+            var scene = scenes[scenes.length - 1];
+            scene.shutdown();
+            s2d.removeChild(scene);
+            scenes.remove(scene);
+        }
+
+        scenes = [new scene.GameOver(), new scene.Game()];
+
+        var scene = scenes[scenes.length - 1];
+        s2d.addChild(scene);
+        scene.init();
     }
 
     override function update(dt:Float)
     {
+        // Update loop
+        if (scenes.length > 0) {
+            var scene = scenes[scenes.length - 1];
+            scene.update(dt);
 
+            if (scene.complete) {
+                scene.shutdown();
+                s2d.removeChild(scene);
+                scenes.remove(scene);
+
+                if (scenes.length > 0) {
+                    var newScene = scenes[scenes.length - 1];
+                    s2d.addChild(newScene);
+                    newScene.init();
+                }
+                else {
+                    reset();
+                }
+            }
+        }
     }
 
     static function main()
