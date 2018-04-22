@@ -39,7 +39,6 @@ class Hero extends Fauna
                     this.y = (Math.floor(targetY / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
                     travelDir = Stop;
                 }
-                trace(this.x, this.y);
             };
 
             case Left: {

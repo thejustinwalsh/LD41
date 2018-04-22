@@ -36,18 +36,18 @@ class Game extends Scene
     {
         switch (event.kind) {
             case EKeyDown: {
-                if (event.keyCode == hxd.Key.W) input = InputUp;
-                if (event.keyCode == hxd.Key.A) input = InputLeft;
-                if (event.keyCode == hxd.Key.S) input = InputDown;
-                if (event.keyCode == hxd.Key.D) input = InputRight;
+                if (event.keyCode == hxd.Key.W || event.keyCode == hxd.Key.UP) input = InputUp;
+                if (event.keyCode == hxd.Key.A || event.keyCode == hxd.Key.LEFT) input = InputLeft;
+                if (event.keyCode == hxd.Key.S || event.keyCode == hxd.Key.DOWN) input = InputDown;
+                if (event.keyCode == hxd.Key.D || event.keyCode == hxd.Key.RIGHT) input = InputRight;
                 if (event.keyCode == hxd.Key.ESCAPE) complete = true;
             };
 
             case EKeyUp: {
-                if (event.keyCode == hxd.Key.W && input == InputUp) input = InputNone;
-                if (event.keyCode == hxd.Key.A && input == InputLeft) input = InputNone;
-                if (event.keyCode == hxd.Key.S && input == InputDown) input = InputNone;
-                if (event.keyCode == hxd.Key.D && input == InputRight) input = InputNone;
+                if ((event.keyCode == hxd.Key.W || event.keyCode == hxd.Key.UP) && input == InputUp) input = InputNone;
+                if ((event.keyCode == hxd.Key.A || event.keyCode == hxd.Key.LEFT) && input == InputLeft) input = InputNone;
+                if ((event.keyCode == hxd.Key.S || event.keyCode == hxd.Key.RIGHT) && input == InputDown) input = InputNone;
+                if ((event.keyCode == hxd.Key.D || event.keyCode == hxd.Key.DOWN) && input == InputRight) input = InputNone;
             };
 
             default:
