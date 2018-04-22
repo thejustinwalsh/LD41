@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="left-down" width="25" height="19" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
  <tileset firstgid="1" name="darkSet" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="../tiles/darkSet.png" width="70" height="36"/>
+  <image source="../tiles/darkSet.png" width="64" height="32"/>
  </tileset>
  <layer name="Tile Layer 1" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJy9VcsKACAI0/7/o6NbhI8c08MOkWxupKmI6ADWhfdchcWnJG5Py/KR9YXcRzW/3jIOdkYMDaS+qlOt9fg9HrSnynz8cEfzwcjWy6TzbXXzo1l1aEzNOXNfTe5dtq+J/+9gAx9IA0E=
+   eJzFVcsOABAM2/z/R4ubiLJOcehBNu3MHm5m/gClw3hmMePzBfeJnk80onFl7Ke52emoNNTvyPizOqwv4kc82ZiY/ohwr/pDkVuUk1//caOumDssdhqqGRCdR6j+mHmlmLEoBnZ/sPYX+6+hAhcMAz0=
   </data>
  </layer>
 </map>
