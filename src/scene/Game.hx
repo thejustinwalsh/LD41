@@ -11,10 +11,13 @@ enum InputAction {
 class Game extends Scene
 {
     var level:TileMap;
-    var hero:fauna.Hero;
-
+    var music:hxd.snd.Channel;
     var input:InputAction = InputNone;
 
+    var hero:fauna.Hero;
+    var enemies:Array<Fauna> = [];
+
+    inline static var TILE_SIZE:Int = 32;
     inline static var MOVESPEED:Float = 8.0;
 
     override public function init()
@@ -22,14 +25,33 @@ class Game extends Scene
         hxd.Stage.getInstance().addEventTarget(onEvent);
 
         // Render our level
-        level = new TileMap(hxd.Res.maps.level1, hxd.Res.tiles.darkSet, 32, 0, this);
+        level = new TileMap(hxd.Res.maps.level1, hxd.Res.tiles.darkSet, TILE_SIZE, 0, this);
+        
+        // Load collision
+        var collision = hxd.Res.maps.level1.toMap();
+        var collides = [1];
 
         // Create the hero character
         hero = new fauna.Hero(this);
         hero.x = 32; hero.y = 32;
-        hero.collisionMap = hxd.Res.maps.level1.toMap();
-        hero.collideWith = [1];
+        hero.collisionMap = collision;
+        hero.collideWith = collides;
         hero.init();
+
+        // Create some enemies
+        var creepers = [{x: 23, y: 1}, {x: 23, y: 17}, {x: 12, y: 15}, {x: 1, y: 17}];
+        for (creeperPos in creepers) {
+            var creeper = new fauna.Creeper(this);
+            creeper.collisionMap = collision;
+            creeper.collideWith = collides;
+            creeper.x = creeperPos.x * TILE_SIZE;
+            creeper.y = creeperPos.y * TILE_SIZE;
+            creeper.init();
+            enemies.push(creeper);
+        }
+
+        // Cue the music
+        music = hxd.Res.music.LD41Vibe.play(true, 10);
     }
 
     function onEvent(event:hxd.Event)
@@ -66,6 +88,7 @@ class Game extends Scene
     override public function update(dt:Float)
     {
         hero.update(dt);
+        for (enemy in enemies) enemy.update(dt);
     }
 
     override public function shutdown()
@@ -73,5 +96,11 @@ class Game extends Scene
         hxd.Stage.getInstance().removeEventTarget(onEvent);
 
         hero.destroy();
+
+        if (music != null) {
+            music.fadeTo(0, 1.0, () -> {
+                music.stop();
+            });
+        }
     }
 }
