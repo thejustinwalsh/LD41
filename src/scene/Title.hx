@@ -28,7 +28,8 @@ class Title extends Scene
 
     function onEvent(event:hxd.Event)
     {
-        if (event.kind == EKeyUp || event.kind == ERelease)
+        var keys = [hxd.Key.SPACE, hxd.Key.LEFT, hxd.Key.RIGHT, hxd.Key.DOWN, hxd.Key.UP];
+        if (event.kind == EKeyDown && keys.indexOf(event.keyCode) >= 0)
         {
             complete = true;
         }
