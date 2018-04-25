@@ -51,7 +51,7 @@ class Game extends Scene
         }
 
         // Cue the music
-        music = hxd.Res.music.LD41Vibe.play(true, 10);
+        //music = hxd.Res.music.LD41Vibe.play(true, 10);
     }
 
     function onEvent(event:hxd.Event)

@@ -13,7 +13,7 @@ enum CreeperMoveDirection {
 class Creeper extends Fauna
 {
     static inline var TILE_SIZE:Int = 32;
-    inline static var MOVESPEED:Float = 1.0;
+    inline static var MOVESPEED:Float = 0.5;
 
     public var collisionMap:TiledMapData;
     public var collideWith:Array<Int> = [];
@@ -32,7 +32,7 @@ class Creeper extends Fauna
         switch (travelDir) {
             case Up: {
                 var targetX = x;
-                var targetY = Math.floor(y - MOVESPEED);
+                var targetY = y - MOVESPEED * dt;
                 if (check(targetX, targetY, 0, collideWith)) {
                     this.y = targetY;
                 }
@@ -43,7 +43,7 @@ class Creeper extends Fauna
             };
 
             case Left: {
-                var targetX = Math.floor(x - MOVESPEED);
+                var targetX = x - MOVESPEED * dt;
                 var targetY = y;
                 if (check(targetX, targetY, 0, collideWith)) {
                     this.x = targetX; 
@@ -56,7 +56,7 @@ class Creeper extends Fauna
 
             case Down: {
                 var targetX = x;
-                var targetY = Math.floor(y + MOVESPEED);
+                var targetY = y + MOVESPEED * dt;
                 if (check(targetX, targetY + TILE_SIZE, 0, collideWith)) {
                     this.y = targetY; 
                 }
@@ -67,7 +67,7 @@ class Creeper extends Fauna
             };
 
             case Right: {
-                var targetX = Math.floor(x + MOVESPEED);
+                var targetX = x + MOVESPEED * dt;
                 var targetY = y;
                 if (check(targetX + TILE_SIZE, targetY, 0, collideWith)) {
                     this.x = targetX;
@@ -99,6 +99,8 @@ class Creeper extends Fauna
 
     public function check(x:Float, y:Float, layer:Int, collide:Array<Int>):Bool
     {
+        x = Math.floor(x);
+        y = Math.floor(y);
         if (collisionMap != null && layer >= 0 && layer < collisionMap.layers.length) {
             var data = collisionMap.layers[layer].data;
 

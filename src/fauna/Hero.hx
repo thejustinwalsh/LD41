@@ -36,7 +36,7 @@ class Hero extends Fauna
         switch (travelDir) {
             case Up: {
                 var targetX = x;
-                var targetY = Math.floor(y - MOVESPEED);
+                var targetY = y - MOVESPEED * dt;
                 if (check(targetX, targetY, 0, collideWith)) {
                     this.y = targetY;
                 }
@@ -48,7 +48,7 @@ class Hero extends Fauna
             };
 
             case Left: {
-                var targetX = Math.floor(x - MOVESPEED);
+                var targetX = x - MOVESPEED * dt;
                 var targetY = y;
                 if (check(targetX, targetY, 0, collideWith)) {
                     this.x = targetX; 
@@ -62,7 +62,7 @@ class Hero extends Fauna
 
             case Down: {
                 var targetX = x;
-                var targetY = Math.floor(y + MOVESPEED);
+                var targetY = y + MOVESPEED * dt;
                 if (check(targetX, targetY + TILE_SIZE, 0, collideWith)) {
                     this.y = targetY; 
                 }
@@ -74,7 +74,7 @@ class Hero extends Fauna
             };
 
             case Right: {
-                var targetX = Math.floor(x + MOVESPEED);
+                var targetX = x + MOVESPEED * dt;
                 var targetY = y;
                 if (check(targetX + TILE_SIZE, targetY, 0, collideWith)) {
                     this.x = targetX;
