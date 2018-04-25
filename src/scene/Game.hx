@@ -72,7 +72,8 @@ class Game extends Scene
                 if ((event.keyCode == hxd.Key.D || event.keyCode == hxd.Key.DOWN) && input == InputRight) input = InputNone;
             };
 
-            default:
+            // Ignore all other input
+            default: return;
         }
 
         // Update the hero travel direction
